@@ -1,0 +1,103 @@
+usage: ./main.py [-h] [--get-stamp] [--seed SEED] [--no-gpus]
+                 [--data-dir D_DIR] [--plot-dir P_DIR] [--results-dir R_DIR]
+                 [--experiment {permMNIST,splitMNIST,mydataset}]
+                 [--scenario {task,domain,class}] [--tasks TASKS] [--bce]
+                 [--bce-distill] [--fc-layers FC_LAY] [--fc-units N]
+                 [--fc-drop FC_DROP] [--fc-bn FC_BN]
+                 [--fc-nl {relu,leakyrelu}] [--singlehead] [--iters ITERS]
+                 [--lr LR] [--batch BATCH] [--optimizer {adam,adam_reset,sgd}]
+                 [--feedback] [--z-dim Z_DIM]
+                 [--replay {offline,exact,generative,none,current,exemplars}]
+                 [--distill] [--temp TEMP] [--g-z-dim G_Z_DIM]
+                 [--g-fc-lay G_FC_LAY] [--g-fc-uni G_FC_UNI]
+                 [--g-iters G_ITERS] [--lr-gen LR_GEN] [--ewc]
+                 [--lambda EWC_LAMBDA] [--fisher-n FISHER_N] [--online]
+                 [--gamma GAMMA] [--emp-fi] [--si] [--c SI_C]
+                 [--epsilon EPSILON] [--xdg GATING_PROP] [--icarl]
+                 [--use-exemplars] [--add-exemplars] [--budget BUDGET]
+                 [--herding] [--norm-exemplars] [--pdf] [--visdom]
+                 [--log-per-task] [--loss-log N] [--prec-log N]
+                 [--prec-n PREC_N] [--sample-log N] [--sample-n SAMPLE_N]
+
+Run individual continual learning experiment.
+
+optional arguments:
+  -h, --help            show this help message and exit
+  --get-stamp           print param-stamp & exit
+  --seed SEED           random seed (for each random-module used)
+  --no-gpus             don't use GPUs
+  --data-dir D_DIR      default: ./datasets
+  --plot-dir P_DIR      default: ./plots
+  --results-dir R_DIR   default: ./results
+
+Task Parameters:
+  --experiment {permMNIST,splitMNIST,mydataset}
+  --scenario {task,domain,class}
+  --tasks TASKS         number of tasks
+
+Loss Parameters:
+  --bce                 use binary (instead of multi-class) classication loss
+  --bce-distill         distilled loss on previous classes for new examples
+                        (only if --bce & --scenario="class")
+
+Model Parameters:
+  --fc-layers FC_LAY    # of fully-connected layers
+  --fc-units N          # of units in first fc-layers
+  --fc-drop FC_DROP     dropout probability for fc-units
+  --fc-bn FC_BN         use batch-norm in the fc-layers (no|yes)
+  --fc-nl {relu,leakyrelu}
+  --singlehead          for Task-IL: use a 'single-headed' output layer
+                        (instead of a 'multi-headed' one)
+
+Training Parameters:
+  --iters ITERS         # batches to optimize solver
+  --lr LR               learning rate
+  --batch BATCH         batch-size
+  --optimizer {adam,adam_reset,sgd}
+
+Replay Parameters:
+  --feedback            equip model with feedback connections
+  --z-dim Z_DIM         size of latent representation (default: 100)
+  --replay {offline,exact,generative,none,current,exemplars}
+  --distill             use distillation for replay?
+  --temp TEMP           temperature for distillation
+
+Generative Model Parameters:
+  --g-z-dim G_Z_DIM     size of latent representation (default: 100)
+  --g-fc-lay G_FC_LAY   [fc_layers] in generator (default: same as classifier)
+  --g-fc-uni G_FC_UNI   [fc_units] in generator (default: same as classifier)
+
+Generator Hyper Parameters:
+  --g-iters G_ITERS     # batches to train generator (default: as classifier)
+  --lr-gen LR_GEN       learning rate generator (default: lr)
+
+Memory Allocation Parameters:
+  --ewc                 use 'EWC' (Kirkpatrick et al, 2017)
+  --lambda EWC_LAMBDA   --> EWC: regularisation strength
+  --fisher-n FISHER_N   --> EWC: sample size estimating Fisher Information
+  --online              --> EWC: perform 'online EWC'
+  --gamma GAMMA         --> EWC: forgetting coefficient (for 'online EWC')
+  --emp-fi              --> EWC: estimate FI with provided labels
+  --si                  use 'Synaptic Intelligence' (Zenke, Poole et al, 2017)
+  --c SI_C              --> SI: regularisation strength
+  --epsilon EPSILON     --> SI: dampening parameter
+  --xdg GATING_PROP     XdG: prop neurons per layer to gate
+
+Exemplar Parameters:
+  --icarl               bce-distill, use-exemplars & add-exemplars
+  --use-exemplars       use exemplars for classification
+  --add-exemplars       add exemplars to current task dataset
+  --budget BUDGET       how many exemplars can be stored?
+  --herding             use herding to select exemplars (instead of random)
+  --norm-exemplars      normalize features/averages of exemplars
+
+Evaluation Parameters:
+  --pdf                 generate pdf with results
+  --visdom              use visdom for on-the-fly plots
+  --log-per-task        set all visdom-logs to [iters]
+  --loss-log N          # iters after which to plot loss
+  --prec-log N          # iters after which to plot precision
+  --prec-n PREC_N       # samples for evaluating solver's precision
+  --sample-log N        # iters after which to plot samples
+  --sample-n SAMPLE_N   # images to show
+

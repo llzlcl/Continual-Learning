@@ -1,0 +1,63 @@
+Test1:
+-task 1: 0.9243
+average: 0.9243
+Test 2:
+-task 1: 0.0667
+-task 2: 0.8222
+average: 0.8556
+Test 3:
+-task 1: 0.0667
+-task 2: 0.0889
+-task 3: 0.7714
+average: 0.5757
+Test 4:
+-task 1: 0.0667
+-task 2: 0.0333
+-task 3: 0.1333
+-task 4: 0.8381
+average: 0.2679
+Test 5:
+-task 1: 0.9714
+-task 2: 0.2000
+-task 3: 0.2286
+-task 4: 0.1714
+-task 5: 0.9650
+average: 0.5073
+Test 6:
+-task 1: 0.8667
+-task 2: 0.2000
+-task 3: 0.2571
+-task 4: 0.0667
+-task 5: 0.7000
+-task 6: 0.9238
+average: 0.5024
+Test 7
+-task 1: 0.0667
+-task 2: 0.1333
+-task 3: 0.0762
+-task 4: 0.3492
+-task 5: 0.0667
+-task 6: 0.4000
+-task 7: 0.8804
+average: 0.2818
+Test 8:
+-task 1: 0.1905
+-task 2: 0.1333
+-task 3: 0.2857
+-task 4: 0.3619
+-task 5: 0.4556
+-task 6: 0.2534
+-task 7: 0.5000
+-task 8: 0.8388
+average: 0.3774
+Test 9:
+-task 1: 0.0667
+-task 2: 0.2340
+-task 3: 0.1333
+-task 4: 0.8952
+-task 5: 0.0667
+-task 6: 0.0667
+-task 7: 0.6111
+-task 8: 0.2560
+-task 9: 0.9200
+average: 0.3620
